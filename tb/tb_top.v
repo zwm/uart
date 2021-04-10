@@ -12,6 +12,9 @@ reg                         word_len;       // 0: 8-bit, 1: 9-bit
 reg                         parity_en;      // 
 reg                         parity_type;    // 0: even, 1: odd
 reg         [1:0]           stop_len;       // 00: 1, 01: 0.5, 10: 2, 11: 1.5
+reg                         samp_mode;
+reg                         irda_mode;
+reg                         ign_stop;
 wire                        rx_vld_p;
 wire        [7:0]           rx_byte;
 wire                        rx_parity;
@@ -66,6 +69,9 @@ uart_receiver u_uart_rx (
     .parity_en              ( parity_en                 ),
     .parity_type            ( parity_type               ),
     .stop_len               ( stop_len                  ),
+    .samp_mode              ( samp_mode                 ),
+    .irda_mode              ( irda_mode                 ),
+    .ign_stop               ( ign_stop                  ),
     .rx_vld_p               ( rx_vld_p                  ),
     .rx_byte                ( rx_byte                   ),
     .rx_parity              ( rx_parity                 ),
@@ -127,6 +133,9 @@ task sys_init;
         parity_en               = 0;        // 
         parity_type             = 0;        // 0: even, 1: odd
         stop_len                = 0;        // 00: 1, 01: 0.5, 10: 2, 11: 1.5
+        samp_mode               = 0;
+        irda_mode               = 0;
+        ign_stop                = 0;
     end
 endtask
 
